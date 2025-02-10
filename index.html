@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My GitHub Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .project-container { display: flex; flex-wrap: wrap; justify-content: center; }
+        .project { width: 300px; margin: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 8px; }
+        img { width: 100%; border-radius: 8px; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Website!</h1>
-    <p>This site is hosted on GitHub Pages.</p>
+
+    <h1>My Portfolio</h1>
+    <p>Check out some of my past and current projects below!</p>
+
+    <div class="project-container">
+        <div class="project">
+            <img src="images/Plant.png" alt="Project 1">
+            <h3>Dissertation: Smart Plant Image Classification</h3>
+            <p>An iOS application which uses a trained and tuned image classification model converted to CoreML to classify the images locally. </p>
+        </div>
+        
+        <div class="project">
+            <img src="images/Model.png" alt="Project 2">
+            <h3>Custom Image Classification Model</h3>
+            <p>For part of my dissertation, I trained a machine learning model for image classification. I used Keras (TensorFlow) and MobileNetV2 as a base which also used transfer learning from ImageNet. For training I used a customised version of the Oxford102Flowers dataset. I added more images to make the dataset more balanced and added more classes. It was then converted to the CoreML format for efficient use of the Neural Engine found on modern iOS devices.</p>
+        </div>
+    </div>
+
+    <div class="project-container">
+        <div class="project">
+            <img src="images/" alt="Project 1">
+            <h3></h3>
+            <p></p>
+        </div>
+        
+        <div class="project">
+            <img src="images/Weather.png" alt="Project 2">
+            <h3>Basic Weather App</h3>
+            <p>A very basic weather app which uses API calls to check for the weather with the user's iPhone location. I used this to learn and prepare for my dissertation as I knew I wanted to do something surrounding an iOS application. </p>
+        </div>
+    </div>
+
 </body>
 </html>
