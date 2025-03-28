@@ -5,54 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .project-container { display: flex; flex-wrap: wrap; justify-content: center; }
-        .project { width: 300px; margin: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 8px; }
-        img { width: 100%; border-radius: 8px; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .project {
+            width: 300px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: all 0.3s ease-in-out;
+        }
+        .project:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            .project {
+                width: 90%;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+        .dark-mode {
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+        }
+        .dark-mode .project {
+            background-color: #2c2c2c;
+            border-color: #555;
+        }
+        .dark-mode a {
+            background-color: #333;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+
+    <button onclick="document.body.classList.toggle('dark-mode')" style="position:fixed;top:10px;right:10px;z-index:999;">🌓 Toggle Theme</button>
 
     <h1>My Portfolio</h1>
     <p>Check out some of my past and current projects below!</p>
 
     <div class="project-container">
         <div class="project">
-            <img src="images/Plant.png" alt="Project 1">
+            <img src="images/Plant.png" alt="Smart Plant Classification">
             <h3>Dissertation: Smart Plant Image Classification</h3>
-            <p>An iOS application which uses a trained and tuned image classification model converted to CoreML to classify the images locally. </p>
+            <p>An iOS application using a trained and optimised image classification model, converted to CoreML, to classify images locally on-device.</p>
         </div>
 
         <div class="project">
-            <img src="images/Weather.png" alt="Project 2">
+            <img src="images/Weather.png" alt="Weather App">
             <h3>Basic Weather App</h3>
-            <p>A very basic weather app which uses API calls to check for the weather with the user's iPhone location. I used this to learn and prepare for my dissertation as I knew I wanted to do something surrounding an iOS application.</p>
+            <p>A simple weather app that fetches weather data based on the user's iPhone location. Built as preparation for my iOS-focused dissertation.</p>
         </div>
     </div>
 
     <div class="project-container">
         <div class="project">
-            <img src="images/API.png" alt="Project 1">
-            <h3>REST API (FAST API)</h3>
-            <p>This project involved developing REST API endpoints for a fictional business system, allowing efficient data retrieval, updates and deletions for HR, admin and sales operations. It also makes use of Swagger.  A handful endpoints were developed such as GET, POST, PUT and DELETE. The API is desgined to handle up to 50 employees records at a time, ensuring performance is optimised. Pagination or rate limiting can be added for larger datasets in the future. This was one of my assignments for my Cloud Computing module.</p>
+            <img src="images/API.png" alt="REST API">
+            <h3>REST API (FASTAPI)</h3>
+            <p>This project involved creating REST API endpoints for a fictional business system. Includes GET, POST, PUT, and DELETE methods with Swagger integration. Optimised for 50 employee records, with scalability options for future needs.</p>
         </div>
+
         <div class="project">
-            <img src="images/Model.png" alt="Project 2">
-            <h3>Custom Image Classification Model (Keras - TensorFlow) </h3>
-            <p>For part of my dissertation, I trained a machine learning model for image classification. I used Keras (TensorFlow) and MobileNetV2 as a base which also used transfer learning from ImageNet. For training I used a customised version of the Oxford102Flowers dataset. I added more images to make the dataset more balanced and added more classes. It was then converted to the CoreML format for efficient use of the Neural Engine found on modern iOS devices.</p>
+            <img src="images/Model.png" alt="Image Classification Model">
+            <h3>Custom Image Classification Model (Keras - TensorFlow)</h3>
+            <p>Part of my dissertation involved training an image classifier using MobileNetV2 with transfer learning from ImageNet. The Oxford102Flowers dataset was expanded and balanced, then converted to CoreML for efficient iOS deployment.</p>
         </div>
     </div>
 
     <div class="project-container">
         <div class="project">
-            <img src="images/PhysX.png" alt="Project 1">
+            <img src="images/PhysX.png" alt="PhysX Simulation">
             <h3>PhysX Physics Sim Assignment (WIP)</h3>
-            <p>For my Physics Simulation assignment I have been tasked to utilise the PhysX middleware (C++) to create an environment and then destroy it using world-accurate physics whilst maintaining good performance.</p>
+            <p>Tasked with building and destructing an environment using NVIDIA PhysX middleware in C++, while maintaining realistic physics and performance.</p>
         </div>
+
         <div class="project">
-            <img src="images/Model-New.png" alt="Project 2">
-            <h3>Upgraded Image Classification Model and Dataset (Pytorch) </h3>
-            <p>I eventually updates the Oxford102Flowers dataset from having 4.5k images to around 11.5k images. I collected these images using an API to find royalty-free photos. This introduced issues when using the other TensorFlow models and architectures. I tranfserred all of my workflow to PyTorch, allowing for faster training times and much better results.</p>
+            <img src="images/Model-New.png" alt="Upgraded Model">
+            <h3>Upgraded Image Classification Model and Dataset (PyTorch)</h3>
+            <p>The dataset was expanded from 4.5k to 11.5k images using an API for royalty-free photos. This prompted a switch from TensorFlow to PyTorch, resulting in faster training and improved accuracy.</p>
         </div>
     </div>
 
