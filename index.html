@@ -1,182 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filip Najda – Portfolio</title>
+  <meta name="description" content="Portfolio of Filip Najda — showcasing UX-focused mobile applications, machine learning projects, and software development work.">
+  <meta name="theme-color" content="#3b82f6">
+  <link rel="icon" href="favicon.ico" />
+
   <style>
+    :root {
+      --bg-light: #f4f4f4;
+      --bg-dark: #1e1e1e;
+      --text-light: #1a1a1a;
+      --text-dark: #f0f0f0;
+      --card-bg-light: #fff;
+      --card-bg-dark: #2c2c2c;
+      --accent: #3b82f6;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       margin: 0;
-      background-color: #f4f4f4;
+      background: var(--bg-light);
+      color: var(--text-light);
+      line-height: 1.6;
     }
-    h1 {
-      margin-top: 20px;
+
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
     }
+
+    header .intro {
+  margin-top: 8px;
+  color: #666;
+  font-size: 1.05rem;
+}
+body.dark-mode header .intro {
+  color: #bbb;
+}
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      letter-spacing: 0.5px;
+    }
+    header h2 {
+      margin-top: 10px;
+      font-weight: normal;
+      color: #555;
+      font-size: 1.3rem;
+    }
+
+    .toggle-theme {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background var(--transition);
+      z-index: 999;
+    }
+    .toggle-theme:hover {
+      background: #2563eb;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin: 40px 0 15px;
+    }
+
     .project-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-    }
-    .project {
-      width: 300px;
-      margin: 20px;
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 8px;
-      background-color: #fff;
-      transition: all 0.3s ease-in-out;
-    }
-    .project:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    @media (max-width: 768px) {
-      .project {
-        width: 90%;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-    }
-    .dark-mode {
-      background-color: #1e1e1e;
-      color: #f0f0f0;
-    }
-    .dark-mode .project {
-      background-color: #2c2c2c;
-      border-color: #555;
-    }
-    .dark-mode a {
-      background-color: #333;
-      color: #fff;
+      gap: 24px;
     }
 
-    /* Bottom sheet styles */
-    .bottom-sheet {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: -100%;
-      max-height: 80vh;
-      background-color: var(--sheet-bg, #fff);
-      color: var(--sheet-color, #000);
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
-      transition: bottom 0.3s ease-out;
-      overflow: auto;
-      z-index: 1000;
+    .project {
+      flex: 1 1 320px;
+      max-width: 360px;
+      background: var(--card-bg-light);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .project img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      transition: opacity var(--transition);
+    }
+
+    /* Portrait (mobile apps) */
+    .project.app img {
+      aspect-ratio: 9 / 19.5;
+      width: 80%;
+      margin: 10px auto 14px;
+      border-radius: 26px; /* iPhone-like rounded corners */
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Landscape */
+    .project img.landscape {
+      aspect-ratio: 16 / 9;
+    }
+
+    .project h3 {
+      margin: 6px 0;
+      font-size: 1.15rem;
+      color: var(--accent);
+      width: 100%;
+    }
+
+    .project p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #444;
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
       padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
     }
-    .bottom-sheet.open {
-      bottom: 0;
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
-    .bottom-sheet.dark-mode {
-      background-color: #2c2c2c;
-      color: #f0f0f0;
+    body.dark-mode header h2 {
+      color: #ccc;
     }
-    .bottom-sheet .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 1.5rem;
-      cursor: pointer;
+    body.dark-mode .project {
+      background: var(--card-bg-dark);
+    }
+    body.dark-mode .project p {
+      color: #ddd;
+    }
+    body.dark-mode footer {
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      .project-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .project {
+        width: 90%;
+        max-width: 400px;
+      }
+      .project.app img {
+        width: 70%;
+      }
+      header h1 {
+        font-size: 2.4rem;
+      }
     }
   </style>
 </head>
+
 <body>
+  <button class="toggle-theme" title="Toggle light/dark" onclick="toggleTheme()">🌓</button>
 
-  <button onclick="document.body.classList.toggle('dark-mode')" style="position:fixed;top:10px;right:10px;z-index:999;">🌓 Toggle Theme</button>
+<header>
+  <h1>Filip Najda</h1>
+  <h2>BSc Computer Science (1st Class Honours)</h2>
+  <p class="intro">Here are some of my most recent projects.</p>
+</header>
 
-  <h1>My Portfolio</h1>
-  <p>Check out some of my past and current projects below!</p>
-  <p>Click on images to get a longer description or video presentation!</p>
+  <main>
+    <!-- ====== MOBILE APPS ====== -->
+    <section>
+      <h2 class="section-title">Mobile Applications</h2>
+      <div class="project-container">
+        <div class="project app">
+          <img src="images/Plant.png" alt="Smart Plant Image Classification app" loading="lazy" />
+          <h3>Smart Plant Image Classification</h3>
+          <p>A UXD and AI focused iOS app for detecting UK plant species. Utilising my own trained image classification model, coverted to CoreML, exploiting the power efficiency and speed of the ANE. Created for my dissertation. Recently updated for iOS 26 Liquid Glass redesign.</p>
+        </div>
 
-  <div class="project-container">
-    <div class="project">
-      <img src="images/Plant.png" alt="Smart Plant Classification" style="border-radius: 30px;">
-      <h3>Dissertation: Smart Plant Image Classification</h3>
-      <p>An iOS application using a trained and optimised image classification model, converted to CoreML, to classify images locally on-device. I have also updated it to make use of the new Liquid Glass iOS 26 redesign!</p>
-    </div>
+        <div class="project app">
+          <img src="images/Weather.png" alt="Weather App" loading="lazy" />
+          <h3>Basic Weather App</h3>
+          <p>A simple iOS app that fetches weather data using the user's location — built in preparation for my dissertation.</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="project">
-      <img src="images/Weather.png" alt="Weather App" style="border-radius: 30px;">
-      <h3>Basic Weather App</h3>
-      <p>A simple weather app that fetches weather data based on the user's iPhone location. Built as preparation for my iOS-focused dissertation.</p>
-    </div>
-  </div>
+    <!-- ====== MACHINE LEARNING ====== -->
+    <section>
+      <h2 class="section-title">Machine Learning</h2>
+      <div class="project-container">
+        <div class="project">
+          <img src="images/Model.png" alt="Keras TensorFlow Image Classifier" class="landscape" loading="lazy" />
+          <h3>Image Classification Model (Keras / TensorFlow)</h3>
+          <p>Trained MobileNetV2 with transfer learning on an expanded Oxford102 dataset and converted to CoreML for iOS deployment. Created for my dissertation.</p>
+        </div>
 
-  <div class="project-container">
-    <div class="project">
-      <img src="images/API.png" alt="REST API">
-      <h3>REST API (FASTAPI)</h3>
-      <p>This project involved creating REST API endpoints for a fictional business system. Includes GET, POST, PUT, and DELETE methods with Swagger integration. Optimised for 50 employee records, with scalability options for future needs.</p>
-    </div>
+        <div class="project">
+          <img src="images/Model-New.png" alt="PyTorch upgraded image classifier" class="landscape" loading="lazy" />
+          <h3>Upgraded Model (PyTorch)</h3>
+          <p>Expanded dataset from 4.5k to 11.5k images via API sourcing. Migrated to PyTorch for faster training and better accuracy. Also converted to CoreML for iOS deployment. Created for my dissertation.</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="project">
-      <img src="images/Model.png" alt="Image Classification Model">
-      <h3>Custom Image Classification Model (Keras - TensorFlow)</h3>
-      <p>Part of my dissertation involved training an image classifier using MobileNetV2 with transfer learning from ImageNet. The Oxford102Flowers dataset was expanded and balanced, then converted to CoreML for efficient iOS deployment.</p>
-    </div>
-  </div>
+    <!-- ====== SOFTWARE / SYSTEMS ====== -->
+    <section>
+      <h2 class="section-title">Software & Systems</h2>
+      <div class="project-container">
+        <div class="project">
+          <img src="images/API.png" alt="REST API with FastAPI" class="landscape" loading="lazy" />
+          <h3>REST API (FastAPI)</h3>
+          <p>Developed a RESTful API with CRUD operations, Swagger documentation, and scalability for a fictional business system.</p>
+        </div>
 
-  <div class="project-container">
-    <div class="project">
-      <img src="images/PhysX.png" alt="PhysX Simulation">
-      <h3>PhysX Physics Sim Assignment</h3>
-      <p>Tasked with building and destructing an environment using NVIDIA PhysX middleware in C++, while maintaining realistic physics and performance.</p>
-    </div>
+        <div class="project">
+          <img src="images/PhysX.png" alt="PhysX simulation project" class="landscape" loading="lazy" />
+          <h3>PhysX Simulation Assignment</h3>
+          <p>Implemented interactive environment creation and destruction using NVIDIA PhysX in C++, maintaining realistic physics.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <div class="project">
-      <img src="images/Model-New.png" alt="Upgraded Model">
-      <h3>Upgraded Image Classification Model and Dataset (PyTorch)</h3>
-      <p>The dataset was expanded from 4.5k to 11.5k images using an API for royalty-free photos. This prompted a switch from TensorFlow to PyTorch, resulting in faster training and improved accuracy.</p>
-    </div>
-  </div>
-
-  <!-- Bottom Sheet -->
-  <div id="bottomSheet" class="bottom-sheet">
-    <span id="closeSheet" class="close-btn">&times;</span>
-    <img
-      id="sheetImage"
-      src=""
-      alt=""
-      style="width:80%; max-width:300px; border-radius:8px; margin:0 auto 10px; display:block;"
-    >
-    <h2 id="sheetTitle"></h2>
-    <p id="sheetDescription"></p>
-  </div>
+  <footer>
+    <p>© 2025 Filip Najda | <a href="https://github.com/fn389" target="_blank" rel="noopener">GitHub</a> | <a href="mailto:fnajda389@gmail.com">fnajda389@gmail.com</a></p>
+  </footer>
 
   <script>
-    const projects = document.querySelectorAll('.project');
-    const sheet = document.getElementById('bottomSheet');
-    const closeBtn = document.getElementById('closeSheet');
-    const sheetImage = document.getElementById('sheetImage');
-    const sheetTitle = document.getElementById('sheetTitle');
-    const sheetDesc = document.getElementById('sheetDescription');
+    /* ====== THEME TOGGLE ====== */
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+    }
 
-    projects.forEach(proj => {
-      proj.style.cursor = 'pointer';
-      proj.addEventListener('click', () => {
-        const img = proj.querySelector('img');
-        sheetImage.src = img.src;
-        sheetTitle.innerText = proj.querySelector('h3').innerText;
-        sheetDesc.innerText = proj.querySelector('p').innerText;
-        sheet.classList.toggle('dark-mode', document.body.classList.contains('dark-mode'));
-        sheet.classList.add('open');
-      });
-    });
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark-mode");
+    }
 
-    closeBtn.addEventListener('click', () => {
-      sheet.classList.remove('open');
-    });
+    /* ====== BOTTOM SHEET (temporarily disabled) ====== */
+    // Code retained for future use — clicking cards currently does nothing
   </script>
-
 </body>
 </html>
